@@ -40,6 +40,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           git_committer_name: ${{ steps.import-gpg.outputs.name }}
           git_committer_email: ${{ steps.import-gpg.outputs.email }}
+          experimental: '{"conflict_resolution":"draft_commit_conflicts"}'
           label_pattern: ''
           target_branches: v3.1
           pull_title: '${target_branch}: ${pull_title} (backport of #${pull_number})'
