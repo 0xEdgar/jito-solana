@@ -9,13 +9,38 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+<<<<<<< HEAD
       time: "01:00"
       timezone: America/Los_Angeles
     open-pull-requests-limit: 6
+=======
+      time: "08:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 0
+
+  # split from root directory schedule to avoid duplicate checks
+  - package-ecosystem: cargo
+    directories:
+      - "/dev-bins"
+      - "/ci/xtask"
+      - "/programs/sbf"
+    schedule:
+      interval: daily
+      time: "14:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 0
+
+>>>>>>> 50ac0a8999 (Ex/backport (#12))
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: daily
+<<<<<<< HEAD
       time: "01:00"
       timezone: America/Los_Angeles
     open-pull-requests-limit: 3
+=======
+      time: "08:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 0
+>>>>>>> 50ac0a8999 (Ex/backport (#12))
