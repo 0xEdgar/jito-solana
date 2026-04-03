@@ -72,7 +72,7 @@ pub struct BamScheduler<Tx: TransactionWithMeta> {
     next_batch_id: u64,
     inflight_batch_info: IntMap<TransactionBatchId, InflightBatchInfo>,
     prio_graph: SchedulerPrioGraph,
-    /// seq_id is the key
+    /// seq_id is the key.
     insertion_to_prio_graph_time: IntMap<u32, Instant>,
     time_in_priograph_us: Histogram,
     time_in_worker_us: Histogram,
