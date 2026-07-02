@@ -51,7 +51,7 @@ const REFRESH_CONFIG_INTERVAL: Duration = Duration::from_secs(1);
 const WAIT_SLEEP_DURATION: Duration = Duration::from_millis(10);
 const CHILD_TASK_SHUTDOWN_GRACE: Duration = Duration::from_millis(100);
 const CONNECTION_TASK_DROP_GRACE: Duration = Duration::from_millis(250);
-pub const MAX_DURATION_BETWEEN_NODE_HEARTBEATS: Duration = Duration::from_secs(6); // 3x the nodes heartbeat interval
+pub const MAX_DURATION_BETWEEN_NODE_HEARTBEATS: Duration = Duration::from_secs(3); // 3x the nodes heartbeat interval
 pub const WAIT_TO_RECONNECT_DURATION: Duration = Duration::from_secs(1);
 
 impl BamConnection {
@@ -173,7 +173,7 @@ impl BamConnection {
                     metrics.heartbeat_sent.fetch_add(1, Relaxed);
                 }
                 _ = metrics_and_health_check_interval.tick() => {
-                    let is_healthy_now = last_heartbeat.is_some_and(|t: Instant| t.elapsed() < MAX_DURATION_BETWEEN_NODE_HEARTBEATS);
+                    let is_healthy_now = last_heartbeat.is_none_or(|t: Instant| t.elapsed() < MAX_DURATION_BETWEEN_NODE_HEARTBEATS);
                     is_healthy.store(is_healthy_now, Relaxed);
                     if !is_healthy_now {
                         metrics
